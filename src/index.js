@@ -12,15 +12,13 @@ import SingleArticle from "./components/SingleArticle";
 
 ReactDOM.render(
     <BrowserRouter>
-        <div>
         <Navbar/>
         <Route exact path="/" component={Welcome}/>
         <Route path="/login" component={Login}/>
         <Route path="/article/:slug" component={SingleArticle}/>
         <Route path="/articles/create" component={CreateArticle}/>
 
-            <Footer/>
-        </div>
+        <Footer/>
     </BrowserRouter>
 , document.getElementById('root'));
 
