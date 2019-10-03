@@ -6,23 +6,20 @@ import Welcome from "./components/Welcome/Index";
 import * as serviceWorker from './serviceWorker';
 import Navbar from "./components/Navbar/Index";
 import Footer from "./components/Footer/Index";
-
-const Home = ()=>{
-   return  <p>This is Home</p>
-}
-
-const About = ()=>{
-    return <p>This is About</p>
-}
+import CreateArticle from "./components/CreateArticle";
+import Login from "./Login";
+import SingleArticle from "./components/SingleArticle";
 
 ReactDOM.render(
     <BrowserRouter>
         <div>
         <Navbar/>
         <Route exact path="/" component={Welcome}/>
-        <Route path="/about" component={About}/>
-        <Route path="/home" component={Home}/>
-        <Footer/>
+        <Route path="/login" component={Login}/>
+        <Route path="/article/:slug" component={SingleArticle}/>
+        <Route path="/articles/create" component={CreateArticle}/>
+
+            <Footer/>
         </div>
     </BrowserRouter>
 , document.getElementById('root'));
