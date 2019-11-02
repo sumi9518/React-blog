@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner=({backgroundImage, title, subtitle}) => {
     return(
-        <header className="header header-inverse" style={{ backgroundImage }} data-overlay={8}>
+        <header className="header header-inverse"  style={{ backgroundImage } } data-overlay={8}>
             <div className="container text-center">
                 <div className="row">
                     <div className="col-12 col-lg-8 offset-lg-2">

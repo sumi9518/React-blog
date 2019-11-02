@@ -23,7 +23,7 @@ const Navbar =()=>{
                         <li className="nav-item">
                             <a className="nav-link" href="#">Hey Garry!
                                 <i className="fa fa-caret-down" />
-                            </a>
+                            </a>/
                             <div className="nav-submenu">
                                 <a className="nav-link" href="page-login.html">My articles</a>
                                 <a className="nav-link" href>Logout</a>
@@ -33,7 +33,7 @@ const Navbar =()=>{
                             <Link className="nav-link" to="/login">Login</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="register.html">Signup</a>
+                            <Link className="nav-link" to="/signup">Signup</Link>
                         </li>
                     </ul>
                 </div>
