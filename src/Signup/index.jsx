@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { validate } from 'indicative/validator';
+import {validate} from 'indicative/validator';
 
 class Register extends React.Component {
     constructor() {
@@ -47,14 +47,13 @@ class Register extends React.Component {
             })
             .catch(errors => {
                 console.log(errors);
-                const formattederrors ={}
-                errors.forEach(error => formattederrors[error.field]= error.message)
+                const formattederrors = {}
+                errors.forEach(error => formattederrors[error.field] = error.message)
                 this.setState({
-                    errors : formattederrors
+                    errors: formattederrors
                 })
             })
     };
-
 
 
     render() {
@@ -71,17 +70,17 @@ class Register extends React.Component {
                                    placeholder="Username"/>
                             {
                                 this.state.errors['Username'] &&
-                                <small className= "text-danger" >{this.state.errors['Username']}</small>
+                                <small className="text-danger">{this.state.errors['Username']}</small>
 
                             }                        </div>
                         <div className="form-group">
                             <input type="text" name="email" onChange={this.userinputchange} className="form-control"
                                    placeholder="Email address"/>
-                                   {
-                            this.state.errors['email'] &&
-                            <small className= "text-danger" >{this.state.errors['email']}</small>
+                            {
+                                this.state.errors['email'] &&
+                                <small className="text-danger">{this.state.errors['email']}</small>
 
-                        }
+                            }
 
                         </div>
                         <div className="form-group">
@@ -89,7 +88,7 @@ class Register extends React.Component {
                                    className="form-control" placeholder="Password"/>
                             {
                                 this.state.errors['password'] &&
-                                <small className= "text-danger" >{this.state.errors['password']}</small>
+                                <small className="text-danger">{this.state.errors['password']}</small>
 
                             }
                         </div>
