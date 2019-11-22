@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Axios  from 'axios';
+import config from '../config';
 import {validate} from 'indicative/validator';
 
 class Register extends React.Component {
@@ -43,15 +45,26 @@ class Register extends React.Component {
 
         validate(data, rules)
             .then(() => {
-                console.log("success");
-            })
-            .catch(errors => {
-                console.log(errors);
+                Axios.post(`${config.apiUrl}/auth/register`, {
+                    name: this.state.Username,
+                    email: this.state.email,
+                    password: this.state.password
+                }).then(response => {
+                    console.log(response);
+                }).catch(errors => {
+                    const formattederrors = {}
+                    formattederrors['email'] = errors.response.data['email'][0];
+                    this.setState({
+                        errors: formattederrors
+                    })
+                })
+            }).catch(errors => {
+                console.log(errors.response);
                 const formattederrors = {}
                 errors.forEach(error => formattederrors[error.field] = error.message)
-                this.setState({
-                    errors: formattederrors
-                })
+                     this.setState({
+                         errors: formattederrors
+                    })
             })
     };
 
