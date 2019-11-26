@@ -9,29 +9,98 @@ import Footer from "./components/Footer/Index";
 import CreateArticle from "./components/CreateArticle";
 import Login from "./Login";
 import SingleArticle from "./components/SingleArticle";
-import  Register from "./Signup";
+import Register from "./Signup";
+import AuthService from "./services/auth";
+import PropTypes from 'prop-types';
 
-const Main = withRouter(({location}) => {
-    /*using fat arrow function actually means you are passing component to it*/
-    return (
-        <div>
-            {
-                location.pathname !== "/login" && location.pathname !== "/signup" &&
+class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            authUser: null
+        };
+    }
 
-                <Navbar/>
-            }
-            <Route exact path="/" component={Welcome}/>
-            <Route path="/signup" component={Register} />
-            <Route path="/login" component={Login}/>
-            <Route path="/article/:slug" component={SingleArticle}/>
-            <Route path="/articles/create" component={CreateArticle}/>
-            {
+    componentDidMount() {
+        const User = localStorage.getItem('user')
+        if (User) {
+            this.setState({
+                authUser: JSON.parse(User)
+
+            });
+
+        }
+    }
+
+    setauthUser = (authUser) => {
+
+        this.setState({
+            authUser
+        },()=>{
+            localStorage.setItem('user',JSON.stringify(authUser))
+            this.props.history.push('/');
+
+        })
+
+    }
+
+    render() {
+        const {location} = this.props;
+
+        return (
+            <div>
+                {
+                    location.pathname !== "/login" && location.pathname !== "/signup" &&
+
+                    <Navbar authUser={this.state.authUser}/>
+                }
+                <Route exact path="/" component={Welcome}/>
+                <Route path="/signup" render={
+                    (props) => <Register
+                            {...props}
+                             registeredUser={this.props.authService.registeredUser}
+                             setauthUser={this.setauthUser}
+                />
+                }
+                />
+                <Route path="/login"
+                       render={
+                           (props) => <Login
+                                   {...props}
+                                   loginUser = {this.props.authService.loginUser}
+                                   setauthUser = {this.setauthUser}
+                           />
+                       }
+                       />
+                <Route path="/article/:slug" component={SingleArticle}/>
+                <Route path="/articles/create" component={CreateArticle}/>
+                {
                     location.pathname !== "/login" && location.pathname !== "/signup" &&
 
                     <Footer/>
 
-            }
-        </div>
+                }
+            </div>
+        );
+    }
+
+}
+
+App.propTypes ={
+    location: PropTypes.shape({
+        pathname:PropTypes.string.isRequired,
+    }).isRequired,
+    history:PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }).isRequired,
+    AuthService : PropTypes.objectOf(PropTypes.func).isRequired,
+};
+
+
+const Main = withRouter((props) => {
+    /*using fat arrow function actually means you are passing component to it*/
+    return (
+        <App authService={new AuthService} {...props} />
     )
 })
 

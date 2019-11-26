@@ -3,6 +3,11 @@ import {Link} from 'react-router-dom';
 import Axios  from 'axios';
 import config from '../config';
 import {validate} from 'indicative/validator';
+import registeredUser from '../config/index';
+import setauthUser from '../index';
+import PropTypes from 'prop-types';
+
+
 
 class Register extends React.Component {
     constructor() {
@@ -23,49 +28,23 @@ class Register extends React.Component {
         });
     }
 
-    dataValidation = (event) => {
+
+    
+    
+    dataValidation = async (event) => {
         event.preventDefault();
 
-        const data = this.state;
-
-        const rules = {
-            Username: 'required|string',
-            email: 'required|email',
-            password: 'required|min:4|confirmed'
-        };
-        const messages = {
-            required: "Empty {{field}} are not allowed",
-            email: "please enter valid email address",
-            range: "password must be in range of min 4 to max 8",
-            'email.email': 'Email is invalid',
-            'password.confirmed': 'password doesnt match'
-
-        };
 
 
-        validate(data, rules)
-            .then(() => {
-                Axios.post(`${config.apiUrl}/auth/register`, {
-                    name: this.state.Username,
-                    email: this.state.email,
-                    password: this.state.password
-                }).then(response => {
-                    console.log(response);
-                }).catch(errors => {
-                    const formattederrors = {}
-                    formattederrors['email'] = errors.response.data['email'][0];
-                    this.setState({
-                        errors: formattederrors
-                    })
-                })
-            }).catch(errors => {
-                console.log(errors.response);
-                const formattederrors = {}
-                errors.forEach(error => formattederrors[error.field] = error.message)
-                     this.setState({
-                         errors: formattederrors
-                    })
-            })
+        try{
+                const user = await this.props.registeredUser(this.state)
+                this.props.setauthUser(user);
+
+            }catch(errors){
+                this.setState({errors});
+            }
+
+
     };
 
 
@@ -124,5 +103,9 @@ class Register extends React.Component {
     }
 
 }
-
+Register.propTypes ={
+    userinputchange: PropTypes.func.isRequired,
+    dataValidation: PropTypes.func.isRequired,
+    errors: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 export default Register;
