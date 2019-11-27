@@ -21,69 +21,69 @@ export default class AuthService {
         };
 
         try {
-            await validate(data, rules, messages)
+            await validate(data, rules, messages);
 
-                const response = await Axios.post(`${config.apiUrl}/auth/register`, {
-                    name: data.Username,
-                    email: data.email,
-                    password: data.password
-                })
+            const response = await Axios.post(`${config.apiUrl}/auth/register`, {
+                name: data.Username,
+                email: data.email,
+                password: data.password
+            });
 
-                return response.data.data
+            return response.data.data
 
 
         } catch (errors) {
             console.log(errors.response);
-            const formattederrors = {}
+            const formattederrors = {};
 
             if (errors.response && errors.response.status === 422) {
                 formattederrors['email'] = errors.response.data['email'][0];
                 return Promise.reject(formattederrors)
             }
-            errors.forEach(error => formattederrors[error.field] = error.message)
+            errors.forEach(error => formattederrors[error.field] = error.message);
             return Promise.reject(formattederrors)
 
         }
 
     }
 
-async loginUser(data) {
+    async loginUser(data) {
 
-    const rules = {
-        email: 'required|email',
-        password: 'required|string'
-    };
-    const messages = {
-        required: "Empty {{field}} are not allowed",
-        'email.email': 'Email is invalid',
+        const rules = {
+            email: 'required|email',
+            password: 'required|string'
+        };
+        const messages = {
+            required: "Empty {{field}} are not allowed",
+            'email.email': 'Email is invalid',
 
-    };
+        };
 
-    try {
-        await validate(data, rules, messages)
+        try {
+            await validate(data, rules, messages);
 
-        const response = await Axios.post(`${config.apiUrl}/auth/login`, {
-            email: data.email,
-            password: data.password
-        })
+            const response = await Axios.post(`${config.apiUrl}/auth/login`, {
+                email: data.email,
+                password: data.password
+            });
+//console.log(response);
+            return response.data.data;
 
-        return response.data.data
 
+        } catch (errors) {
+            //console.log(errors.response);
+            const formattedErrors = {};
 
-    } catch (errors) {
-        console.log(errors.response);
-        const formattederrors = {}
+            if (errors.response && errors.response.status === 401) {
+                formattedErrors['email'] = "Invalid Credentials";
+                return Promise.reject(formattedErrors);
+            }
+            errors.forEach((errors) => {
+                formattedErrors[errors.field] = errors.message
+            });
+            return Promise.reject(formattedErrors);
 
-        if (errors.response && errors.response.status === 401) {
-            formattederrors['email'] = "Invalid Credentials";
-            return Promise.reject(formattederrors)
         }
-        errors.forEach((errors) => {
-            formattederrors[errors.field] = errors.message
-        });
-        return Promise.reject(formattederrors)
 
     }
-
-}
 }

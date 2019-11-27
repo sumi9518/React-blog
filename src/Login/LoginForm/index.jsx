@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-
-const LoginForm = ({userinputchange,handleSubmit,errors}) => {
+const Login = ({handleInputChange, handleSubmit, errors}) => {
     return (
 
         <div className="mh-fullscreen bg-img center-vh p-20" style={{backgroundImage: "url(assets/img/bg-girl.jpg)"}}>
@@ -13,7 +12,8 @@ const LoginForm = ({userinputchange,handleSubmit,errors}) => {
                 <br/><br/>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <input type="text" name="email" onChange={userinputchange} className="form-control" placeholder="Username"/>
+                        <input type="text" name="email" onChange={handleInputChange} className="form-control"
+                               placeholder="Username"/>
                         {
                             errors['email'] &&
                             <small className="text-danger">{errors['email']}</small>
@@ -21,7 +21,8 @@ const LoginForm = ({userinputchange,handleSubmit,errors}) => {
                         }
                     </div>
                     <div className="form-group">
-                        <input type="password" name="password" onChange={userinputchange} className="form-control" placeholder="Password"/>
+                        <input type="password" name="password" onChange={handleInputChange} className="form-control"
+                               placeholder="Password"/>
 
                     </div>
                     <div className="form-group flexbox py-10">
@@ -30,7 +31,7 @@ const LoginForm = ({userinputchange,handleSubmit,errors}) => {
                             <span className="custom-control-indicator"/>
                             <span className="custom-control-description">Remember me</span>
                         </label>
-                        <a href='/'  className="text-muted hover-primary fs-13" href="#">Forgot password?</a>
+                        <a href='/' className="text-muted hover-primary fs-13">Forgot password?</a>
                     </div>
                     <div className="form-group">
                         <button className="btn btn-bold btn-block btn-primary" type="submit">Login</button>
@@ -44,11 +45,11 @@ const LoginForm = ({userinputchange,handleSubmit,errors}) => {
 
         </div>
     )
-}
-LoginForm.propTypes = {
-    userinputchange: PropTypes.func.isRequired,
+};
+Login.propTypes = {
+    handleInputChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     errors: PropTypes.objectOf(PropTypes.string).isRequired,
 
-}
-export default LoginForm;
+};
+export default Login;

@@ -15,25 +15,25 @@ class CreateArticle extends React.Component {
         };
     }
 
-async componentWillMount() {
-        const Categories = await this.props.getArticleCategories();
+    async componentWillMount() {
+        const categories = await this.props.getArticleCategories();
+        console.log(categories);
+    }
 
-}
-
-    userinputchange = (event) => {
+    handleInputChange = (event) => {
         console.log(event.target.files);
         this.setState({
-            [event.target.name]: event.target.type ==='file' ? event.target.files[0]: event.target.value,
+            [event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
 
         });
-    }
+    };
 
     render() {
         return (<CreateArticleForm
-            userinputchange = {this.userinputchange}
-            Categories = {this.state.Categories}
+            handleInputChange={this.handleInputChange}
+            Categories={this.state.Categories}
 
-    />)
+        />)
     }
 }
 

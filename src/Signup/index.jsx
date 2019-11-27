@@ -16,7 +16,7 @@ class Register extends React.Component {
         };
     }
 
-    userinputchange = (event) => {
+    handleInputChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
 
@@ -33,7 +33,7 @@ class Register extends React.Component {
 
         try{
                 const user = await this.props.registeredUser(this.state)
-                this.props.setauthUser(user);
+                this.props.setAuthUser(user);
 
             }catch(errors){
                 this.setState({errors});
@@ -53,7 +53,7 @@ class Register extends React.Component {
                     <br/>
                     <form className="form-type-material" onSubmit={this.dataValidation}>
                         <div className="form-group">
-                            <input type="text" name="Username" onChange={this.userinputchange} className="form-control" placeholder="Username"/>
+                            <input type="text" name="Username" onChange={this.handleInputChange} className="form-control" placeholder="Username"/>
                             {
                                 this.state.errors['Username'] &&
                                 <small className="text-danger">{this.state.errors['Username']}</small>
@@ -61,7 +61,7 @@ class Register extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            <input type="text" name="email" onChange={this.userinputchange} className="form-control"
+                            <input type="text" name="email" onChange={this.handleInputChange} className="form-control"
                                    placeholder="Email address"/>
                             {
                                 this.state.errors['email'] &&
@@ -71,7 +71,7 @@ class Register extends React.Component {
 
                         </div>
                         <div className="form-group">
-                            <input type="password" name="password" onChange={this.userinputchange}
+                            <input type="password" name="password" onChange={this.handleInputChange}
                                    className="form-control" placeholder="Password"/>
                             {
                                 this.state.errors['password'] &&
@@ -80,7 +80,7 @@ class Register extends React.Component {
                             }
                         </div>
                         <div className="form-group">
-                            <input type="password" name="password_confirmation" onChange={this.userinputchange}
+                            <input type="password" name="password_confirmation" onChange={this.handleInputChange}
                                    className="form-control" placeholder="Password (confirm)"/>
 
                         </div>
@@ -99,7 +99,7 @@ class Register extends React.Component {
 
 }
 Register.propTypes ={
-    userinputchange: PropTypes.func.isRequired,
+    handleInputChange: PropTypes.func.isRequired,
     dataValidation: PropTypes.func.isRequired,
     errors: PropTypes.objectOf(PropTypes.string).isRequired,
 };

@@ -1,9 +1,9 @@
-import  React from 'react';
+import React from 'react';
 import Banner from "../../Banner/Index";
 import PropTypes from 'prop-types';
 
 
-const  CreateArticleForm =({userinputchange, Categories})=>{
+const CreateArticleForm = ({handleInputChange, Categories}) => {
     return (
         <div>
 
@@ -20,21 +20,27 @@ const  CreateArticleForm =({userinputchange, Categories})=>{
                                 <form className="p-30 bg-gray rounded" method="POST" data-form="mailer">
                                     <div className="row">
                                         <div className="form-group col-md-12 my-5">
-                                            <input type="file" name="image " onChange={userinputchange} className="form-control" />
+                                            <input type="file" name="image " onChange={handleInputChange}
+                                                   className="form-control"/>
                                         </div>
                                         <div className="form-group col-12 col-md-6">
-                                            <input className="form-control form-control-lg" type="text" name="title" onChange={userinputchange} placeholder="Title" />
+                                            <input className="form-control form-control-lg" type="text" name="title"
+                                                   onChange={handleInputChange} placeholder="Title"/>
                                         </div>
                                         <div className="form-group col-12 col-md-6">
-                                            <select name ="channel" onChange={userinputchange} className="form-control form-control-lg">
+                                            <select name="channel" onChange={handleInputChange}
+                                                    className="form-control form-control-lg">
                                                 <option value>Select category</option>
                                                 {Categories.map(category =>
-                                                    <option key ={category.id} value={category.id}>{category.name}</option> )}
+                                                    <option key={category.id}
+                                                            value={category.id}>{category.name}</option>)}
                                             </select>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <textarea className="form-control form-control-lg" rows={4} placeholder="Content" name="Content" onChange={userinputchange}  defaultValue={""} />
+                                        <textarea className="form-control form-control-lg" rows={4}
+                                                  placeholder="Content" name="Content" onChange={handleInputChange}
+                                                  defaultValue={""}/>
                                     </div>
                                     <div className="text-center">
                                         <button className="btn btn-lg btn-primary" type="submit">Create Article</button>
@@ -48,10 +54,10 @@ const  CreateArticleForm =({userinputchange, Categories})=>{
         </div>
 
     )
-}
+};
 
-CreateArticleForm.propTypes ={
-    userinputchange : PropTypes.func.isRequired,
-    getArticleCategories : PropTypes.func.isRequired,
-}
+CreateArticleForm.propTypes = {
+    handleInputChange: PropTypes.func.isRequired,
+    getArticleCategories: PropTypes.func.isRequired,
+};
 export default CreateArticleForm;

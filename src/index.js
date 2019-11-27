@@ -23,7 +23,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const User = localStorage.getItem('user')
+        const User = localStorage.getItem('user');
         if (User) {
             this.setState({
                 authUser: JSON.parse(User)
@@ -33,7 +33,7 @@ class App extends React.Component {
         }
     }
 
-    setauthUser = (authUser) => {
+    setAuthUser = (authUser) => {
 
         this.setState({
             authUser
@@ -61,17 +61,17 @@ class App extends React.Component {
                     (props) => <Register
                         {...props}
                         registeredUser={this.props.authService.registeredUser}
-                        setauthUser={this.setauthUser}
+                        setAuthUser={this.setAuthUser}
                     />
                 }
                 />
                 <Route path="/login"
                        render={
-                           (props) => <Login
+                           (props) => (<Login
                                {...props}
+                               setAuthUser={this.setAuthUser}
                                loginUser={this.props.authService.loginUser}
-                               setauthUser={this.setauthUser}
-                           />
+                           />)
                        }
                 />
                 <Route path="/articles/:slug" component={SingleArticle}/>
@@ -81,10 +81,10 @@ class App extends React.Component {
                        render={
                            props => (
                                <CreateArticle  /*step 6 */
-                               {...props}
-                               /*step 5 */
-                               getArticleCategories={this.props.articleServices.getArticleCategories}  /*step 2 */
-                           />
+                                   {...props}
+                                   /*step 5 */
+                                   getArticleCategories={this.props.articleServices.getArticleCategories}  /*step 2 */
+                               />
                            )
                        }
                 />
@@ -121,9 +121,9 @@ const Main = withRouter((props) => {
             {...props}
             authService={new AuthService()}
             articleServices={new ArticleServices()} //step 1
-            />
+        />
     )
-})
+});
 
 ReactDOM.render(
     <BrowserRouter>
