@@ -15,15 +15,15 @@ const Navbar =({authUser})=>{
                 <div className="topbar-right">
                     <ul className="topbar-nav nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="index.html">Home</a>
+                            <a className="nav-link" href="/">Home</a>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="articles/create" >Write new article</Link>
                         </li>
                         <li className="nav-item">
-                            <a  className="nav-link" href=''>Hey {authUser && authUser.name} !
+                            <a  className="nav-link" href=''>Hey {authUser && authUser.user.name} !
                                 <i className="fa fa-caret-down" />
-                            </a>/
+                            </a>
                             <div className="nav-submenu">
                                 <a className="nav-link" href="page-login.html">My articles</a>
                                 <a className="nav-link" href=''>Logout</a>

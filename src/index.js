@@ -23,30 +23,26 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const User = localStorage.getItem('user');
-        if (User) {
+        const user = localStorage.getItem('user');
+        if (user) {
             this.setState({
-                authUser: JSON.parse(User)
-
+                authUser: JSON.parse(user)
             });
-
         }
     }
 
     setAuthUser = (authUser) => {
-
         this.setState({
             authUser
         }, () => {
             localStorage.setItem('user', JSON.stringify(authUser));
             this.props.history.push('/');
-
         });
-
     };
 
     render() {
         const {location} = this.props;
+        console.log(this.state.authUser);
 
         return (
             <div>
