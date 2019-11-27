@@ -55,8 +55,8 @@ class App extends React.Component {
                 <Route path="/signup" render={
                     (props) => <Signup
                         {...props}
+                        registerUser={this.props.authService.registerUser}
                         setAuthUser={this.setAuthUser}
-                        registeredUser={this.props.authService.registeredUser}
                     />
                 }
                 />
@@ -64,8 +64,8 @@ class App extends React.Component {
                        render={
                            (props) => (<Login
                                {...props}
-                               setAuthUser={this.setAuthUser}
                                loginUser={this.props.authService.loginUser}
+                               setAuthUser={this.setAuthUser}
                            />)
                        }
                 />
@@ -113,8 +113,8 @@ const Main = withRouter((props) => {
     /*using fat arrow function actually means you are passing component to it*/
     return (
         <App
-            {...props}
             authService={new AuthService()}
+            {...props}
             articleServices={new ArticleServices()} //step 1
         />
     )

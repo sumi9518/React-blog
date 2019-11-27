@@ -26,9 +26,8 @@ class Register extends React.Component {
     dataValidation = async (event) => {
         event.preventDefault();
 
-
         try {
-            const user = await this.props.registeredUser(this.state);
+            const user = await this.props.registerUser(this.state);
             this.props.setAuthUser(user);
 
         } catch (errors) {

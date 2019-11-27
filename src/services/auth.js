@@ -4,7 +4,7 @@ import config from "../config";
 
 export default class AuthService {
 
-    async registeredUser(data) {
+    async registerUser(data) {
 
         const rules = {
             Username: 'required|string',
@@ -28,17 +28,17 @@ export default class AuthService {
                 password: data.password
             });
 
-            return response.data.data
+            return response.data.data;
 
 
         } catch (errors) {
             const formattedErrors = {};
             if (errors.response && errors.response.status === 422) {
                 formattedErrors['email'] = errors.response.data['email'][0];
-                return Promise.reject(formattedErrors)
+                return Promise.reject(formattedErrors);
             }
             errors.forEach(error => formattedErrors[error.field] = error.message);
-            return Promise.reject(formattedErrors)
+            return Promise.reject(formattedErrors);
 
         }
 
