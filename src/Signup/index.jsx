@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-
 class Register extends React.Component {
     constructor() {
         super();
@@ -21,23 +20,20 @@ class Register extends React.Component {
             [event.target.name]: event.target.value
 
         });
-    }
+    };
 
 
-    
-    
     dataValidation = async (event) => {
         event.preventDefault();
 
 
+        try {
+            const user = await this.props.registeredUser(this.state);
+            this.props.setAuthUser(user);
 
-        try{
-                const user = await this.props.registeredUser(this.state)
-                this.props.setAuthUser(user);
-
-            }catch(errors){
-                this.setState({errors});
-            }
+        } catch (errors) {
+            this.setState({errors});
+        }
 
 
     };
@@ -53,7 +49,8 @@ class Register extends React.Component {
                     <br/>
                     <form className="form-type-material" onSubmit={this.dataValidation}>
                         <div className="form-group">
-                            <input type="text" name="Username" onChange={this.handleInputChange} className="form-control" placeholder="Username"/>
+                            <input type="text" name="Username" onChange={this.handleInputChange}
+                                   className="form-control" placeholder="Username"/>
                             {
                                 this.state.errors['Username'] &&
                                 <small className="text-danger">{this.state.errors['Username']}</small>
@@ -98,7 +95,8 @@ class Register extends React.Component {
     }
 
 }
-Register.propTypes ={
+
+Register.propTypes = {
     handleInputChange: PropTypes.func.isRequired,
     dataValidation: PropTypes.func.isRequired,
     errors: PropTypes.objectOf(PropTypes.string).isRequired,

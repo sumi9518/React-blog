@@ -41,7 +41,7 @@ class App extends React.Component {
             localStorage.setItem('user', JSON.stringify(authUser));
             this.props.history.push('/');
 
-        })
+        });
 
     };
 

@@ -15,14 +15,19 @@ const Login = ({handleInputChange, handleSubmit, errors}) => {
                         <input type="text" name="email" onChange={handleInputChange} className="form-control"
                                placeholder="Username"/>
                         {
-                            errors['email'] &&
-                            <small className="text-danger">{errors['email']}</small>
+                            errors.email &&
+                            <small className="text-danger">{errors.email}</small>
 
                         }
                     </div>
                     <div className="form-group">
                         <input type="password" name="password" onChange={handleInputChange} className="form-control"
                                placeholder="Password"/>
+                        {
+                            errors.password &&
+                            <small className="text-danger">{errors.password}</small>
+
+                        }
 
                     </div>
                     <div className="form-group flexbox py-10">

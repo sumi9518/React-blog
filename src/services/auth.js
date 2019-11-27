@@ -1,4 +1,4 @@
-import {validate} from "indicative/validator";
+import {validateAll} from "indicative/validator";
 import Axios from "axios";
 import config from "../config";
 
@@ -21,7 +21,7 @@ export default class AuthService {
         };
 
         try {
-            await validate(data, rules, messages);
+            await validateAll(data, rules, messages);
 
             const response = await Axios.post(`${config.apiUrl}/auth/register`, {
                 name: data.Username,
@@ -34,14 +34,14 @@ export default class AuthService {
 
         } catch (errors) {
             console.log(errors.response);
-            const formattederrors = {};
+            const formattedErrors = {};
 
             if (errors.response && errors.response.status === 422) {
-                formattederrors['email'] = errors.response.data['email'][0];
-                return Promise.reject(formattederrors)
+                formattedErrors['email'] = errors.response.data['email'][0];
+                return Promise.reject(formattedErrors)
             }
-            errors.forEach(error => formattederrors[error.field] = error.message);
-            return Promise.reject(formattederrors)
+            errors.forEach(error => formattedErrors[error.field] = error.message);
+            return Promise.reject(formattedErrors)
 
         }
 
@@ -60,18 +60,18 @@ export default class AuthService {
         };
 
         try {
-            await validate(data, rules, messages);
+            await validateAll(data, rules, messages);
 
             const response = await Axios.post(`${config.apiUrl}/auth/login`, {
                 email: data.email,
                 password: data.password
             });
-//console.log(response);
+
             return response.data.data;
 
 
         } catch (errors) {
-            //console.log(errors.response);
+
             const formattedErrors = {};
 
             if (errors.response && errors.response.status === 401) {

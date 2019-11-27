@@ -26,11 +26,7 @@ class Login extends React.Component {
         try {
             const user = await this.props.loginUser(this.state);
 
-            localStorage.setItem('user', JSON.stringify(user));
-
             this.props.setAuthUser(user);
-
-            this.props.history.push('/');
 
         } catch (errors) {
             this.setState({errors})
@@ -40,15 +36,16 @@ class Login extends React.Component {
 
     render() {
         return (
-            < LoginForm
+            <LoginForm
                 handleInputChange={this.handleInputChange}
                 handleSubmit={this.handleSubmit}
-                errors = {this.state.errors}
+                errors={this.state.errors}
             />
         );
     }
 }
-Login.propTypes ={
+
+Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     setAuthUser: PropTypes.func.isRequired,
     errors: PropTypes.objectOf(PropTypes.string).isRequired,
