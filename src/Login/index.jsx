@@ -1,8 +1,6 @@
 import React from 'react';
 import LoginForm from "./LoginForm";
-import loginUser from '../config/index';
 import PropTypes from "prop-types";
-import Register from "../Signup";
 
 
 class Login extends React.Component {

@@ -9,7 +9,7 @@ const Article = () => {
                     <a href="blog-single.html">New features will add to dashboard soon</a>
                 </h3>
                 <div className="link-color-default fs-12">
-                    <a href="#">News</a>,
+                    <a href="/">News</a>,
                     <time>May 13, 2017</time>
                 </div>
             </header>

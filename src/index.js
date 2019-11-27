@@ -12,6 +12,7 @@ import SingleArticle from "./components/SingleArticle";
 import Register from "./Signup";
 import AuthService from "./services/auth";
 import PropTypes from 'prop-types';
+import ArticleServices from "./services/articles";
 
 class App extends React.Component {
     constructor() {
@@ -36,13 +37,13 @@ class App extends React.Component {
 
         this.setState({
             authUser
-        },()=>{
-            localStorage.setItem('user',JSON.stringify(authUser))
+        }, () => {
+            localStorage.setItem('user', JSON.stringify(authUser));
             this.props.history.push('/');
 
         })
 
-    }
+    };
 
     render() {
         const {location} = this.props;
@@ -55,25 +56,39 @@ class App extends React.Component {
                     <Navbar authUser={this.state.authUser}/>
                 }
                 <Route exact path="/" component={Welcome}/>
+
                 <Route path="/signup" render={
                     (props) => <Register
-                            {...props}
-                             registeredUser={this.props.authService.registeredUser}
-                             setauthUser={this.setauthUser}
-                />
+                        {...props}
+                        registeredUser={this.props.authService.registeredUser}
+                        setauthUser={this.setauthUser}
+                    />
                 }
                 />
                 <Route path="/login"
                        render={
                            (props) => <Login
-                                   {...props}
-                                   loginUser = {this.props.authService.loginUser}
-                                   setauthUser = {this.setauthUser}
+                               {...props}
+                               loginUser={this.props.authService.loginUser}
+                               setauthUser={this.setauthUser}
                            />
                        }
-                       />
-                <Route path="/article/:slug" component={SingleArticle}/>
-                <Route path="/articles/create" component={CreateArticle}/>
+                />
+                <Route path="/articles/:slug" component={SingleArticle}/>
+
+
+                <Route path="articles/create"
+                       render={
+                           props => (
+                               <CreateArticle  /*step 6 */
+                               {...props}
+                               /*step 5 */
+                               getArticleCategories={this.props.articleServices.getArticleCategories}  /*step 2 */
+                           />
+                           )
+                       }
+                />
+
                 {
                     location.pathname !== "/login" && location.pathname !== "/signup" &&
 
@@ -86,21 +101,27 @@ class App extends React.Component {
 
 }
 
-App.propTypes ={
+App.propTypes = {
     location: PropTypes.shape({
-        pathname:PropTypes.string.isRequired,
+        pathname: PropTypes.string.isRequired,
     }).isRequired,
-    history:PropTypes.shape({
+    history: PropTypes.shape({
         push: PropTypes.func.isRequired,
     }).isRequired,
-    AuthService : PropTypes.objectOf(PropTypes.func).isRequired,
+    AuthService: PropTypes.objectOf(PropTypes.func).isRequired,
+    ArticleServices: PropTypes.objectOf(PropTypes.func).isRequired,
+
 };
 
 
 const Main = withRouter((props) => {
     /*using fat arrow function actually means you are passing component to it*/
     return (
-        <App authService={new AuthService} {...props} />
+        <App
+            {...props}
+            authService={new AuthService()}
+            articleServices={new ArticleServices()} //step 1
+            />
     )
 })
 

@@ -1,10 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Axios  from 'axios';
-import config from '../config';
-import {validate} from 'indicative/validator';
-import registeredUser from '../config/index';
-import setauthUser from '../index';
 import PropTypes from 'prop-types';
 
 
@@ -58,13 +53,13 @@ class Register extends React.Component {
                     <br/>
                     <form className="form-type-material" onSubmit={this.dataValidation}>
                         <div className="form-group">
-                            <input type="text" name="Username" onChange={this.userinputchange} className="form-control"
-                                   placeholder="Username"/>
+                            <input type="text" name="Username" onChange={this.userinputchange} className="form-control" placeholder="Username"/>
                             {
                                 this.state.errors['Username'] &&
                                 <small className="text-danger">{this.state.errors['Username']}</small>
 
-                            }                        </div>
+                            }
+                        </div>
                         <div className="form-group">
                             <input type="text" name="email" onChange={this.userinputchange} className="form-control"
                                    placeholder="Email address"/>
