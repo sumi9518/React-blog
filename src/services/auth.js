@@ -17,7 +17,6 @@ export default class AuthService {
             range: "password must be in range of min 4 to max 8",
             'email.email': 'Email is invalid',
             'password.confirmed': 'password doesnt match'
-
         };
 
         try {
@@ -33,9 +32,7 @@ export default class AuthService {
 
 
         } catch (errors) {
-            console.log(errors.response);
             const formattedErrors = {};
-
             if (errors.response && errors.response.status === 422) {
                 formattedErrors['email'] = errors.response.data['email'][0];
                 return Promise.reject(formattedErrors)

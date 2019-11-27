@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Index";
 import CreateArticle from "./components/CreateArticle";
 import Login from "./Login";
 import SingleArticle from "./components/SingleArticle";
-import Register from "./Signup";
+import Signup from "./Signup";
 import AuthService from "./services/auth";
 import PropTypes from 'prop-types';
 import ArticleServices from "./services/articles";
@@ -42,7 +42,6 @@ class App extends React.Component {
 
     render() {
         const {location} = this.props;
-        console.log(this.state.authUser);
 
         return (
             <div>
@@ -54,10 +53,10 @@ class App extends React.Component {
                 <Route exact path="/" component={Welcome}/>
 
                 <Route path="/signup" render={
-                    (props) => <Register
+                    (props) => <Signup
                         {...props}
-                        registeredUser={this.props.authService.registeredUser}
                         setAuthUser={this.setAuthUser}
+                        registeredUser={this.props.authService.registeredUser}
                     />
                 }
                 />
