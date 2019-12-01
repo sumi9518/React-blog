@@ -9,20 +9,18 @@ class CreateArticle extends React.Component {
       image: null,
       content: '',
       channel: null,
-      errors: {}
-
+      errors: {},
     };
   }
 
-  // eslint-disable-next-line camelcase
-  async UNSAFE_componentWillMount() {
+  async componentWillMount() {
     const categories = await this.props.getArticleCategories();
+    console.log(categories);
   }
 
   handleInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
-
     });
   };
 
@@ -30,7 +28,6 @@ class CreateArticle extends React.Component {
     return (
       <CreateArticleForm
         handleInputChange={this.handleInputChange}
-        categories={this.state.categories}
       />
     );
   }

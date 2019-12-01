@@ -5,11 +5,12 @@ import { BrowserRouter, withRouter } from 'react-router-dom';
 import App from './components/App';
 
 import AuthService from './services/auth';
+import ArticleServices from './services/articles';
 
 
 const Main = withRouter((props) => ((
   // eslint-disable-next-line react/jsx-filename-extension,react/jsx-props-no-spreading
-  <App authService={new AuthService()} {...props} />
+  <App authService={new AuthService()} {...props} articlesService={new ArticleServices()} />
 )));
 
 ReactDOM.render(
