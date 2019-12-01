@@ -23,7 +23,7 @@ const Welcome = () => {
                         <nav className="flexbox mt-50 mb-50">
                             <a href='/' className="btn btn-white disabled">
                                 <i className="ti-arrow-left fs-9 mr-4"/> Newer</a>
-                            <a href='/'  className="btn btn-white" href="#">Older
+                            <a href='/'  className="btn btn-white">Older
                                 <i className="ti-arrow-right fs-9 ml-4"/>
                             </a>
                         </nav>

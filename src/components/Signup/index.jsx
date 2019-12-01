@@ -37,7 +37,6 @@ class Register extends React.Component {
 
     };
 
-
     render() {
         return (
             <div className="mh-fullscreen bg-img center-vh p-20"
@@ -51,8 +50,8 @@ class Register extends React.Component {
                             <input type="text" name="Username" onChange={this.handleInputChange}
                                    className="form-control" placeholder="Username"/>
                             {
-                                this.state.errors['Username'] &&
-                                <small className="text-danger">{this.state.errors['Username']}</small>
+                                this.state.errors.Username &&
+                                <small className="text-danger">{this.state.errors.Username}</small>
 
                             }
                         </div>
@@ -60,8 +59,8 @@ class Register extends React.Component {
                             <input type="text" name="email" onChange={this.handleInputChange} className="form-control"
                                    placeholder="Email address"/>
                             {
-                                this.state.errors['email'] &&
-                                <small className="text-danger">{this.state.errors['email']}</small>
+                                this.state.errors.email &&
+                                <small className="text-danger">{this.state.errors.email}</small>
 
                             }
 
@@ -70,8 +69,8 @@ class Register extends React.Component {
                             <input type="password" name="password" onChange={this.handleInputChange}
                                    className="form-control" placeholder="Password"/>
                             {
-                                this.state.errors['password'] &&
-                                <small className="text-danger">{this.state.errors['password']}</small>
+                                this.state.errors.password &&
+                                <small className="text-danger">{this.state.errors.password}</small>
 
                             }
                         </div>
