@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 import Login from '../Login';
-import Navbar from '../Navbar/Index';
+// eslint-disable-next-line import/no-unresolved
+import Navbar from '../Navbar';
 import Welcome from '../Welcome/Index';
 import Footer from '../Footer/Index';
 import CreateArticle from '../CreateArticle/index';
