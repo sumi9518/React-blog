@@ -38,7 +38,7 @@ class App extends React.Component {
   };
 
   render() {
-    const {location} = this.props;
+    const { location } = this.props;
 
     return (
       <div>
@@ -46,9 +46,9 @@ class App extends React.Component {
           location.pathname !== '/login' && location.pathname !== '/signup'
 
           // eslint-disable-next-line react/destructuring-assignment
-          && <Navbar authUser={this.state.authUser}/>
+          && <Navbar authUser={this.state.authUser} />
         }
-        <Route exact path="/" component={Welcome}/>
+        <Route exact path="/" component={Welcome} />
 
         <Route
           path="/signup"
@@ -74,7 +74,7 @@ class App extends React.Component {
             )
           }
         />
-        <Route path="/articles/:slug" component={SingleArticle}/>
+        <Route path="/articles/:slug" component={SingleArticle} />
 
 
         <Route
@@ -92,7 +92,7 @@ class App extends React.Component {
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
 
-          && <Footer/>
+          && <Footer />
 
         }
       </div>

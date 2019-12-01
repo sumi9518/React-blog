@@ -9,7 +9,7 @@ const Article = () => (
       </h3>
       <div className="link-color-default fs-12">
         <a href="/">News</a>
-,
+        ,
         <time>May 13, 2017</time>
       </div>
     </header>
@@ -18,13 +18,13 @@ const Article = () => (
     </a>
     <div className="card-block">
       <p className="text-justify">
-          Together. Great. So good was saying, that cant first let called air divide
-          stars male isnt. Herb third let
-          may fourth divide. Greater gathering land youll i their beast have.
-          Shed form sea it wherein fowl, spirit
-          creeping living. Likeness creepeth you hath heaven.
-          Likeness, moveth fruitful behold. Open evening a air us
-          behold. Saying above moving second a subdue likeness after also second.
+        Together. Great. So good was saying, that cant first let called air divide
+        stars male isnt. Herb third let
+        may fourth divide. Greater gathering land youll i their beast have.
+        Shed form sea it wherein fowl, spirit
+        creeping living. Likeness creepeth you hath heaven.
+        Likeness, moveth fruitful behold. Open evening a air us
+        behold. Saying above moving second a subdue likeness after also second.
       </p>
       <p className="text-center mt-40">
         <Link className="btn btn-primary btn-round" to="/article/some-title-slug">Read more</Link>

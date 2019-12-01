@@ -1,5 +1,4 @@
 import React from 'react';
-import Banner from '../Banner/Index';
 import CreateArticleForm from './CreateArticleForm';
 
 class CreateArticle extends React.Component {

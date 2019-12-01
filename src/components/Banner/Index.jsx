@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Banner = ( {backgroundImage, title, subTitle} ) => (
-  <header className="header header-inverse" style={{backgroundImage}} data-overlay={8}>
+const Banner = ({ backgroundImage, title, subTitle }) => (
+  <header className="header header-inverse" style={{ backgroundImage }} data-overlay={8}>
     <div className="container text-center">
       <div className="row">
         <div className="col-12 col-lg-8 offset-lg-2">
