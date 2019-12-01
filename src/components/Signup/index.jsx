@@ -7,17 +7,17 @@ class Register extends React.Component {
   constructor() {
     super();
     this.state = {
-      Username: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
-      errors: {}
+      Username: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      errors: {},
     };
   }
 
   handleInputChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
 
     });
   };

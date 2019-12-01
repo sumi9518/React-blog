@@ -5,8 +5,8 @@ import { Route } from 'react-router-dom';
 import Login from '../Login';
 // eslint-disable-next-line import/no-unresolved
 import Navbar from '../Navbar';
-import Welcome from '../Welcome/Index';
-import Footer from '../Footer/Index';
+import Welcome from '../Welcome';
+import Footer from '../Footer';
 import CreateArticle from '../CreateArticle/index';
 import SingleArticle from '../SingleArticle';
 import Signup from '../Signup';

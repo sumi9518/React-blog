@@ -67,4 +67,5 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
   authUser: null,
 };
+
 export default Navbar;
