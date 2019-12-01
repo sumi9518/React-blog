@@ -44,8 +44,6 @@ class App extends React.Component {
       <div>
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
-
-          // eslint-disable-next-line react/destructuring-assignment
           && <Navbar authUser={this.state.authUser} />
         }
         <Route exact path="/" component={Welcome} />
@@ -83,7 +81,7 @@ class App extends React.Component {
             (props) => (
               <CreateArticle
                 {...props}
-                getArticleCategories={this.props.articleServices.getArticleCategories} /* step 2 */
+                getArticleCategories={this.props.articleServices.getArticleCategories}
               />
             )
           }
