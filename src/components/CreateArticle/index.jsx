@@ -9,7 +9,8 @@ class CreateArticle extends React.Component {
       title: '',
       image: null,
       content: '',
-      channel: null,
+      category: null,
+      categories: [],
       errors: {}
 
     };
@@ -18,10 +19,15 @@ class CreateArticle extends React.Component {
   // eslint-disable-next-line camelcase
   async componentWillMount() {
     const categories = await this.props.getArticleCategories();
+    //console.log(categories);
     this.setState({
       categories,
     });
   }
+handleSubmit= async (event)=>{
+    event.preventDefault();
+    this.props.CreateArticle(this.state);
+}
 
   handleInputChange = (event) => {
     this.setState({
@@ -42,6 +48,5 @@ class CreateArticle extends React.Component {
 }
 CreateArticle.propTypes = {
   getArticleCategories: PropTypes.func.isRequired,
-  createArticle: PropTypes.func.isRequired,
 };
 export default CreateArticle;

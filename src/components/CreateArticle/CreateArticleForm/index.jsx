@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../../Banner/index';
 
-const CreateArticle = ({ handleInputChange, categories, handleSubmit }) => (
+const CreateArticle = ({ handleInputChange, Categories, handleSubmit }) => (
   <div>
 
     <Banner
@@ -36,12 +36,12 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit }) => (
                   </div>
                   <div className="form-group col-12 col-md-6">
                     <select
-                      name="channel"
+                      name="category"
                       onChange={handleInputChange}
                       className="form-control form-control-lg"
                     >
                       <option value>Select category</option>
-                      {categories && categories.map((category) => (
+                      {Categories && Categories.map((category) => (
                         <option key={category.id} value={category.id}>{category.name}</option>
                       ))}
                     </select>
@@ -72,7 +72,7 @@ const CreateArticle = ({ handleInputChange, categories, handleSubmit }) => (
 
 CreateArticle.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
+  Categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,

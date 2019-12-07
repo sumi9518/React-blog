@@ -12,7 +12,8 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
         "localStorage": true,
-        "document": true
+        "document": true,
+        "FormData": true
     },
     "parserOptions": {
         "ecmaFeatures": {

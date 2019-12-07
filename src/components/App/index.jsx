@@ -82,7 +82,7 @@ class App extends React.Component {
               <CreateArticle
                 {...props}
                 getArticleCategories={this.props.articleService.getArticleCategories}
-                createArticle={this.props.articleService.createArticle}
+                CreateArticle={this.props.articleService.CreateArticle}
               />
             )
           }
@@ -109,7 +109,7 @@ App.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   authService: PropTypes.objectOf(PropTypes.func).isRequired,
-  articleServices: PropTypes.objectOf(PropTypes.func).isRequired,
+  articleService: PropTypes.objectOf(PropTypes.func).isRequired,
 
 };
 
