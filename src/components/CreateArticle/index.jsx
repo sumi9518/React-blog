@@ -8,7 +8,7 @@ class CreateArticle extends React.Component {
     this.state = {
       title: '',
       image: null,
-      content: '',
+      Content: '',
       category: null,
       categories: [],
       errors: {}
@@ -26,7 +26,14 @@ class CreateArticle extends React.Component {
   }
 handleSubmit= async (event)=>{
     event.preventDefault();
-    this.props.CreateArticle(this.state);
+    try {
+      this.props.CreateArticle(this.state, this.props.token);
+      this.props.history.push('/');
+    }catch(errors){
+      this.setState({
+        errors
+      })
+    }
 }
 
   handleInputChange = (event) => {
@@ -48,5 +55,7 @@ handleSubmit= async (event)=>{
 }
 CreateArticle.propTypes = {
   getArticleCategories: PropTypes.func.isRequired,
+  CreateArticle :PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired
 };
 export default CreateArticle;

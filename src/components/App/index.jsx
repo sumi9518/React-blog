@@ -83,6 +83,7 @@ class App extends React.Component {
                 {...props}
                 getArticleCategories={this.props.articleService.getArticleCategories}
                 CreateArticle={this.props.articleService.CreateArticle}
+                token  = {this.state.authUser.token}
               />
             )
           }
