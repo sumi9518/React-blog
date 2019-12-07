@@ -19,7 +19,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const user = localStorage.getItem('user');
     if (user) {
       this.setState({
@@ -44,8 +44,6 @@ class App extends React.Component {
       <div>
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
-
-          // eslint-disable-next-line react/destructuring-assignment
           && <Navbar authUser={this.state.authUser} />
         }
         <Route exact path="/" component={Welcome} />
@@ -68,8 +66,8 @@ class App extends React.Component {
             (props) => (
               <Login
                 {...props}
-                loginUser={this.props.authService.loginUser}
                 setAuthUser={this.setAuthUser}
+                loginUser={this.props.authService.loginUser}
               />
             )
           }
@@ -78,16 +76,19 @@ class App extends React.Component {
 
 
         <Route
-          path="articles/create"
+          path="/articles/create"
           render={
             (props) => (
               <CreateArticle
                 {...props}
-                getArticleCategories={this.props.articleServices.getArticleCategories}
+                getArticleCategories={this.props.articleService.getArticleCategories}
+                createArticle={this.props.articleService.createArticle}
               />
             )
           }
         />
+
+
 
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
@@ -107,8 +108,8 @@ App.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  AuthService: PropTypes.objectOf(PropTypes.func).isRequired,
-  ArticleServices: PropTypes.objectOf(PropTypes.func).isRequired,
+  authService: PropTypes.objectOf(PropTypes.func).isRequired,
+  articleServices: PropTypes.objectOf(PropTypes.func).isRequired,
 
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-
 class Register extends React.Component {
   constructor() {
     super();
@@ -29,7 +28,6 @@ class Register extends React.Component {
     try {
       const user = await this.props.registerUser(this.state);
       this.props.setAuthUser(user);
-
     } catch (errors) {
       this.setState({ errors });
     }
@@ -40,7 +38,7 @@ class Register extends React.Component {
   render() {
     return (
       <div className="mh-fullscreen bg-img center-vh p-20"
-           style={{ backgroundImage: "url(assets/img/bg-girl.jpg" }}>
+           style={{ backgroundImage: `url(assets/img/bg-girl.jpg` }}>
         <div className="card card-shadowed p-50 w-400 mb-0" style={{ maxWidth: '100%' }}>
           <h5 className="text-uppercase text-center">Register</h5>
           <br />
@@ -91,7 +89,6 @@ class Register extends React.Component {
 
     )
   }
-
 }
 
 Register.propTypes = {

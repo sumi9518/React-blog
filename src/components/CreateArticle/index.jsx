@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateArticleForm from './CreateArticleForm';
+import PropTypes from 'prop-types';
 
 class CreateArticle extends React.Component {
   constructor() {
@@ -9,18 +10,23 @@ class CreateArticle extends React.Component {
       image: null,
       content: '',
       channel: null,
-      errors: {},
+      errors: {}
+
     };
   }
 
+  // eslint-disable-next-line camelcase
   async componentWillMount() {
     const categories = await this.props.getArticleCategories();
-    console.log(categories);
+    this.setState({
+      categories,
+    });
   }
 
   handleInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.type === 'file' ? event.target.files[0] : event.target.value,
+
     });
   };
 
@@ -28,9 +34,14 @@ class CreateArticle extends React.Component {
     return (
       <CreateArticleForm
         handleInputChange={this.handleInputChange}
+        Categories={this.state.categories}
+        handleSubmit={this.handleSubmit}
       />
     );
   }
 }
-
+CreateArticle.propTypes = {
+  getArticleCategories: PropTypes.func.isRequired,
+  createArticle: PropTypes.func.isRequired,
+};
 export default CreateArticle;
