@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateArticleForm from './CreateArticleForm';
+import PropTypes from 'prop-types';
 
 class CreateArticle extends React.Component {
   constructor() {
@@ -15,8 +16,11 @@ class CreateArticle extends React.Component {
   }
 
   // eslint-disable-next-line camelcase
-  async UNSAFE_componentWillMount() {
+  async componentWillMount() {
     const categories = await this.props.getArticleCategories();
+    this.setState({
+      categories,
+    });
   }
 
   handleInputChange = (event) => {
@@ -30,10 +34,14 @@ class CreateArticle extends React.Component {
     return (
       <CreateArticleForm
         handleInputChange={this.handleInputChange}
-        categories={this.state.categories}
+        Categories={this.state.categories}
+        handleSubmit={this.handleSubmit}
       />
     );
   }
 }
-
+CreateArticle.propTypes = {
+  getArticleCategories: PropTypes.func.isRequired,
+  createArticle: PropTypes.func.isRequired,
+};
 export default CreateArticle;

@@ -1,9 +1,8 @@
 import React from 'react';
-import Banner from "../../Banner/Index";
 import PropTypes from 'prop-types';
+import Banner from '../../Banner/index';
 
-
-const CreateArticleForm = ({ handleInputChange, Categories }) => {
+const CreateArticle = ({ handleInputChange, Categories,handleSubmit }) => {
   return (
     <div>
 
@@ -17,7 +16,7 @@ const CreateArticleForm = ({ handleInputChange, Categories }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-12">
-                <form className="p-30 bg-gray rounded" method="POST" data-form="mailer">
+                <form className="p-30 bg-gray rounded" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="form-group col-md-12 my-5">
                       <input type="file" name="image " onChange={handleInputChange}
@@ -32,8 +31,7 @@ const CreateArticleForm = ({ handleInputChange, Categories }) => {
                               className="form-control form-control-lg">
                         <option value>Select category</option>
                         {Categories.map(category =>
-                          <option key={category.id}
-                                  value={category.id}>{category.name}</option>)}
+                          <option key={category.id} value={category.id}>{category.name}</option>)}
                       </select>
                     </div>
                   </div>
@@ -56,8 +54,12 @@ const CreateArticleForm = ({ handleInputChange, Categories }) => {
   )
 };
 
-CreateArticleForm.propTypes = {
+
+CreateArticle.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
-  getArticleCategories: PropTypes.func.isRequired,
+  Categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 };
-export default CreateArticleForm;
+export default CreateArticle;

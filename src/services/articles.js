@@ -4,7 +4,9 @@ import config from '../config';
 export default class ArticleServices {
 
   async getArticleCategories() { /*step 3 */
-    const categories = await Axios.get(`${config.apiUrl}/categories`);
-    return categories;
+    const response = await Axios.get(`${config.apiUrl}/categories`);
+    return response.data.categories;
   }
 }
+
+
