@@ -4,8 +4,8 @@ import { validateAll } from "indicative/validator";
 
 export default class ArticleServices {
 
-  async getArticles() {
-    const response = await Axios.get(`${config.apiUrl}/articles`);
+  async getArticles(url = `${config.apiUrl}/articles`) {
+    const response = await Axios.get(url);
 
     return response.data.data;
   }
