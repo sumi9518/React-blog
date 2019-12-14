@@ -19,10 +19,10 @@ const Articles = ({ articles, handlePagination, prevUrl, nextUrl }) => ((
               <hr />
             </div>))}
           <nav className="flexbox mt-50 mb-50">
-            <a href="#" className={`btn btn-white ${prevUrl ? '' : 'disabled'}`} onClick={() => handlePagination(prevUrl)}>
+            <a className={`btn btn-white ${prevUrl ? '' : 'disabled'}`} onClick={() => handlePagination(prevUrl)}>
               <i className="ti-arrow-left fs-9 ml-4" /> Previous Page
             </a>
-            <a href="/" className={`btn btn-white${nextUrl ? '' : 'disabled'}`} onClick={() => handlePagination(nextUrl)}>
+            <a className={`btn btn-white${nextUrl ? '' : 'disabled'}`} onClick={() => handlePagination(nextUrl)}>
               Next Page
               <i className="ti-arrow-right fs-9 mr-4" />
             </a>

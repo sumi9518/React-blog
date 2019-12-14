@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import Login from '../Login';
 // eslint-disable-next-line import/no-unresolved
 import Navbar from '../Navbar';
@@ -47,15 +46,15 @@ class App extends React.Component {
           && <Navbar authUser={this.state.authUser} />
         }
         <Route exact path="/"
-        render={
-         props=> (
-           <Welcome
-             {...props}
-            getArticles ={this.props.articleService.getArticles}
-           />
-         )
+               render={
+                 props => (
+                   <Welcome
+                     {...props}
+                     getArticles={this.props.articleService.getArticles}
+                   />
+                 )
 
-        }
+               }
         />
 
         <Route
@@ -82,7 +81,17 @@ class App extends React.Component {
             )
           }
         />
-        <Route path="/articles/:slug" component={SingleArticle} />
+        <Route
+          path="/article/:slug"
+               render={
+                 props => (
+                   <SingleArticle
+                     {...props}
+                     getArticle={this.props.articleService.getArticle} //bcoz of entry point , services called to fetch data & then passed as props
+                   />
+                 )
+               }
+        />
 
 
         <Route
@@ -93,12 +102,11 @@ class App extends React.Component {
                 {...props}
                 getArticleCategories={this.props.articleService.getArticleCategories}
                 CreateArticle={this.props.articleService.CreateArticle}
-                token  = {this.state.authUser.token}
+                token={this.state.authUser.token}
               />
             )
           }
         />
-
 
 
         {

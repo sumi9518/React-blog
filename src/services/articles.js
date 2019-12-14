@@ -10,6 +10,11 @@ export default class ArticleServices {
     return response.data.data;
   }
 
+  async getArticle(slug){
+    const response = await Axios.get(`${config.apiUrl}/article/${slug}`);
+    return response.data.data;
+  }
+
   async getArticleCategories() { /*step 3 */
     const response = await Axios.get(`${config.apiUrl}/categories`);
     // console.log(response);
