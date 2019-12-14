@@ -27,7 +27,6 @@ class Welcome extends React.Component {
         nextUrl={this.state.articles.next_page_url}
         prevUrl={this.state.articles.prev_page_url}
         handlePagination={this.handlePagination}
-
       />
     )
   }
