@@ -15,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       authUser: null,
+      articles: [],
     };
   }
 
@@ -25,6 +26,10 @@ class App extends React.Component {
         authUser: JSON.parse(user),
       });
     }
+  }
+
+  setArticles = (articles) => {
+    this.setState({articles});
   }
 
   setAuthUser = (authUser) => {
@@ -51,6 +56,7 @@ class App extends React.Component {
                    <Welcome
                      {...props}
                      getArticles={this.props.articleService.getArticles}
+                     setArticles = {this.setArticles}
                    />
                  )
 
@@ -88,6 +94,7 @@ class App extends React.Component {
                    <SingleArticle
                      {...props}
                      getArticle={this.props.articleService.getArticle} //bcoz of entry point , services called to fetch data & then passed as props
+                     articles={this.state.articles}
                    />
                  )
                }
