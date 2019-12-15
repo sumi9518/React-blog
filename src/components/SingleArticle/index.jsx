@@ -8,11 +8,11 @@ class SingleArticleContainer extends React.Component {
     super();
     this.state = {
       article: null,
+      loading: true,
     }
   }
 
   async componentWillMount() {
-    console.log(this.props);
     const article = await this.props.getArticle(this.props.match.params.slug);
     this.setState({article, loading:false});
   }
