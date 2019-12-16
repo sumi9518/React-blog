@@ -9,6 +9,7 @@ import Footer from '../Footer';
 import CreateArticle from '../CreateArticle/index';
 import SingleArticle from '../SingleArticle';
 import Signup from '../Signup';
+import Auth from "../Auth";
 
 class App extends React.Component {
   constructor() {
@@ -100,7 +101,16 @@ class App extends React.Component {
                }
         />
 
-
+<Auth
+path = "/articles/create"
+component = {CreateArticle}
+props = {{
+  getArticleCategories : this.props.articleService.getArticleCategories,
+  createArticle : this.props.articleService.createArticle,
+  token: this.state.authUser ? this.state.authUser.token : null,
+}}
+isAuthenticated={this.state.authUser !== null }
+/>
         <Route
           path="/articles/create"
           render={
