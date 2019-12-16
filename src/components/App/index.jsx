@@ -9,7 +9,8 @@ import Footer from '../Footer';
 import CreateArticle from '../CreateArticle/index';
 import SingleArticle from '../SingleArticle';
 import Signup from '../Signup';
-import Auth from "../Auth";
+import Auth from '../Auth';
+import RedirectIfAuth from '../RedirectIfAuth';
 
 class App extends React.Component {
   constructor() {
@@ -30,7 +31,7 @@ class App extends React.Component {
   }
 
   setArticles = (articles) => {
-    this.setState({articles});
+    this.setState({ articles });
   }
 
   setAuthUser = (authUser) => {
@@ -57,74 +58,54 @@ class App extends React.Component {
                    <Welcome
                      {...props}
                      getArticles={this.props.articleService.getArticles}
-                     setArticles = {this.setArticles}
+                     setArticles={this.setArticles}
                    />
                  )
 
                }
         />
 
-        <Route
+        <RedirectIfAuth
           path="/signup"
-          render={
-            (props) => (
-              <Signup
-                {...props}
-                registerUser={this.props.authService.registerUser}
-                setAuthUser={this.setAuthUser}
-              />
-            )
-          }
+          component={Signup}
+          props={{
+            setAuthUser: this.setAuthUser,
+            loginUser: this.props.authService.loginUser,
+          }}
+          isAuthenticated={this.state.authUser !== null}
         />
-        <Route
+        <RedirectIfAuth
           path="/login"
-          render={
-            (props) => (
-              <Login
-                {...props}
-                setAuthUser={this.setAuthUser}
-                loginUser={this.props.authService.loginUser}
-              />
-            )
-          }
+          component={Login}
+          props={{
+            setAuthUser: this.setAuthUser,
+            loginUser: this.props.authService.loginUser,
+          }}
+          isAuthenticated={this.state.authUser !== null}
         />
         <Route
           path="/article/:slug"
-               render={
-                 props => (
-                   <SingleArticle
-                     {...props}
-                     getArticle={this.props.articleService.getArticle} //bcoz of entry point , services called to fetch data & then passed as props
-                     articles={this.state.articles}
-                   />
-                 )
-               }
-        />
-
-<Auth
-path = "/articles/create"
-component = {CreateArticle}
-props = {{
-  getArticleCategories : this.props.articleService.getArticleCategories,
-  createArticle : this.props.articleService.createArticle,
-  token: this.state.authUser ? this.state.authUser.token : null,
-}}
-isAuthenticated={this.state.authUser !== null }
-/>
-        <Route
-          path="/articles/create"
           render={
-            (props) => (
-              <CreateArticle
+            props => (
+              <SingleArticle
                 {...props}
-                getArticleCategories={this.props.articleService.getArticleCategories}
-                CreateArticle={this.props.articleService.CreateArticle}
-                token={this.state.authUser.token}
+                getArticle={this.props.articleService.getArticle} //bcoz of entry point , services called to fetch data & then passed as props
+                articles={this.state.articles}
               />
             )
           }
         />
 
+        <Auth
+          path="/articles/create"
+          component={CreateArticle}
+          props={{
+            getArticleCategories: this.props.articleService.getArticleCategories,
+            createArticle: this.props.articleService.createArticle,
+            token: this.state.authUser ? this.state.authUser.token : null,
+          }}
+          isAuthenticated={this.state.authUser !== null}
+        />
 
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
