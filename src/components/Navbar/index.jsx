@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import auth from "../../services/auth";
 
 const Navbar = ({ authUser }) => ((
   <nav className="topbar topbar-inverse topbar-expand-md topbar-sticky">
@@ -17,22 +18,28 @@ const Navbar = ({ authUser }) => ((
           <li className="nav-item">
             <a className="nav-link" href="/">Home</a>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="articles/create">Write new article</Link>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/#">
-              Hey
-              {authUser && authUser.user.name}
-              {' '}
-              !
-              <i className="fa fa-caret-down" />
-            </a>
-            <div className="nav-submenu">
-              <a className="nav-link" href="/">My articles</a>
-              <a className="nav-link" href="/">Logout</a>
-            </div>
-          </li>
+          {
+            authUser &&
+            <li className="nav-item">
+              <Link className="nav-link" to="articles/create">Write new article</Link>
+            </li>
+          }
+          {
+            authUser &&
+            <li className="nav-item">
+              <a className="nav-link" href="/#">
+                Hey
+                {authUser && authUser.user.name}
+                {' '}
+                !
+                <i className="fa fa-caret-down" />
+              </a>
+              <div className="nav-submenu">
+                <a className="nav-link" href="/user/articles">My articles</a>
+                <a className="nav-link" href>Logout</a>
+              </div>
+            </li>
+          }
           {
             !authUser
             && (

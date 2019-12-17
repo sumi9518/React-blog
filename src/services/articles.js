@@ -10,18 +10,27 @@ export default class ArticleServices {
     return response.data.data;
   }
 
-  async getArticle(slug){
+  async getArticle(slug) {
     const response = await Axios.get(`${config.apiUrl}/article/${slug}`);
+    return response.data.data;
+  }
+
+  async getUserArticles(token, url = `${config.apiUrl}/user/articles`) {
+    const response = await Axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data.data;
   }
 
   async getArticleCategories() { /*step 3 */
     const categories = JSON.parse(localStorage.getItem('categories')); //optimising by storing categories in local storage
-    if(categories){
+    if (categories) {
       return categories;
     }
     const response = await Axios.get(`${config.apiUrl}/categories`);
-    localStorage.setItem('categories',JSON.stringify(response.data.categories));
+    localStorage.setItem('categories', JSON.stringify(response.data.categories));
     return response.data.categories;
   }
 

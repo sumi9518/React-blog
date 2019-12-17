@@ -12,7 +12,8 @@ const SignUpForm = ({ handleInputChange, handleSubmit, errors }) => ((
           <input
             type="text"
             name="name"
-            onChange={handleInputChange}
+            onCha
+            nge={handleInputChange}
             className="form-control"
             placeholder="Username"
           />

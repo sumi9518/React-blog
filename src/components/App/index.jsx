@@ -11,6 +11,7 @@ import SingleArticle from '../SingleArticle';
 import Signup from '../Signup';
 import Auth from '../Auth';
 import RedirectIfAuth from '../RedirectIfAuth';
+import UserArticles from "../UserArticles";
 
 class App extends React.Component {
   constructor() {
@@ -52,17 +53,18 @@ class App extends React.Component {
           location.pathname !== '/login' && location.pathname !== '/signup'
           && <Navbar authUser={this.state.authUser} />
         }
-        <Route exact path="/"
-               render={
-                 props => (
-                   <Welcome
-                     {...props}
-                     getArticles={this.props.articleService.getArticles}
-                     setArticles={this.setArticles}
-                   />
-                 )
+        <Route
+          exact path="/"
+          render={
+            props => (
+              <Welcome
+                {...props}
+                getArticles={this.props.articleService.getArticles}
+                setArticles={this.setArticles}
+              />
+            )
 
-               }
+          }
         />
 
         <RedirectIfAuth
@@ -107,6 +109,16 @@ class App extends React.Component {
           isAuthenticated={this.state.authUser !== null}
         />
 
+        <Auth
+          path="/user/articles"
+          component={UserArticles}
+          props={{
+            getUserArticles: this.props.articleService.getUserArticles,
+            setArticles: this.setArticles,
+            token: this.state.authUser ? this.state.authUser.token : null,
+          }}
+          isAuthenticated={this.state.authUser !== null}
+        />
         {
           location.pathname !== '/login' && location.pathname !== '/signup'
 
