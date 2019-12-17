@@ -34,7 +34,7 @@ export default class ArticleServices {
     return response.data.categories;
   }
 
-  CreateArticle = async (data, token) => { //token can also be get from local but not preferred
+  createArticle = async (data, token) => { //token can also be get from local but not preferred
     if (!data.image) {
       return Promise.reject([{
         message: 'The image is required.',
@@ -54,7 +54,7 @@ export default class ArticleServices {
       const image = await this.uploadToCloudinary(data.image);
       const response = await Axios.post(`${config.apiUrl}/articles`, {
         title: data.title,
-        content: data.Content,
+        content: data.content,
         category_id: data.category,
         imageUrl: image.secure_url,
       }, {

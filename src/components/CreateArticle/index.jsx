@@ -8,7 +8,7 @@ class CreateArticle extends React.Component {
     this.state = {
       title: '',
       image: null,
-      Content: '',
+      content: '',
       category: null,
       categories: [],
       errors: [],
@@ -24,15 +24,17 @@ class CreateArticle extends React.Component {
       categories,
     });
   }
-handleSubmit= async (event)=>{
+
+  handleSubmit = async (event) => {
     event.preventDefault();
     try {
-     await this.props.CreateArticle(this.state, this.props.token);
+      await this.props.createArticle(this.state, this.props.token)
+      console.log(this.state);
       this.props.history.push('/');
-    }catch(errors){
+    } catch (errors) {
       this.setState({ errors });
     }
-}
+  };
 
   handleInputChange = (event) => {
     this.setState({
@@ -48,14 +50,13 @@ handleSubmit= async (event)=>{
         Categories={this.state.categories}
         handleSubmit={this.handleSubmit}
         errors= {this.state.errors}
-
       />
     );
   }
 }
 CreateArticle.propTypes = {
   getArticleCategories: PropTypes.func.isRequired,
-  CreateArticle :PropTypes.func.isRequired,
+  createArticle: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
