@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import auth from "../../services/auth";
 
 const Navbar = ({ authUser }) => ((
   <nav className="topbar topbar-inverse topbar-expand-md topbar-sticky">
