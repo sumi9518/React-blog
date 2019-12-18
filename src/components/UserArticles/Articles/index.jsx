@@ -16,6 +16,7 @@ const Articles = ({ articles, handlePagination, prevUrl, nextUrl, deleteArticle 
           {articles && articles.map(article => (
             <div key={article.id}>
               <div className="text-center">
+                <Article article={article} />
               <button onClick={() => deleteArticle(article.id)} className="btn btn-danger">Delete Article</button>
               </div>
               <hr />

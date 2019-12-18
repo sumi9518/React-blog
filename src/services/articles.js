@@ -24,6 +24,7 @@ async deleteArticle(id, token){
   }
 
   async getUserArticles(token, url = `${config.apiUrl}/user/articles`) {
+    console.log(token);
     const response = await Axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`,

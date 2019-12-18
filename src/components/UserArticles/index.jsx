@@ -23,8 +23,11 @@ class UserArticles extends React.Component {
 
   };
   deleteArticle = async (id) => {
-    console.log(this.props.deleteArticle);
-    await this.props.deleteArticle(id, this.props.token);
+    console.log(id);
+    const a = await this.props.deleteArticles(id, this.props.token);
+    console.log(a);
+
+   // await JSON.stringify(this.props.deleteArticle(id, this.props.token));
     const articles = this.state.articles.data.filter(article => article.id !== id);
     this.setState({
       articles: {
