@@ -29,7 +29,6 @@ class CreateArticle extends React.Component {
     event.preventDefault();
     try {
       await this.props.createArticle(this.state, this.props.token)
-      console.log(this.state);
       this.props.history.push('/');
     } catch (errors) {
       this.setState({ errors });

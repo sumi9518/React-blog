@@ -9,6 +9,14 @@ export default class ArticleServices {
 
     return response.data.data;
   }
+async deleteArticle(id, token){
+    await  Axios.delete(`${config.apiUrl}/article/${id}`,{
+      headers: {
+        Authorization : `Bearer${token}`,
+      }
+    });
+    return true;
+}
 
   async getArticle(slug) {
     const response = await Axios.get(`${config.apiUrl}/article/${slug}`);
@@ -62,7 +70,6 @@ export default class ArticleServices {
           Authorization: `Bearer${token}`, //attach token to data to know which user created this data
         },
       });
-      console.log(response);
       return response.data;
     } catch (errors) {
       if (errors.response) {
@@ -78,7 +85,6 @@ export default class ArticleServices {
     form.append('file', image);
     form.append('upload_preset', 'blogImage');
     const response = await Axios.post('https://api.cloudinary.com/v1_1/sumiy/image/upload', form);
-    console.log(response);
     return response.data;
   }
 }

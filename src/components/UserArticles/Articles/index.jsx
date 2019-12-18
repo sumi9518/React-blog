@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Banner from '../../Banner';
 import Article from '../../Article';
 
-const Articles = ({ articles, handlePagination, prevUrl, nextUrl }) => ((
+const Articles = ({ articles, handlePagination, prevUrl, nextUrl, deleteArticle }) => ((
   <div>
     <Banner
       backgroundImage={`url(${process.env.PUBLIC_URL}/assets/img/bg-gift.jpg)`}
@@ -15,7 +15,9 @@ const Articles = ({ articles, handlePagination, prevUrl, nextUrl }) => ((
         <div className="col-12 col-lg-6 offset-lg-3">
           {articles && articles.map(article => (
             <div key={article.id}>
-              <Article article={article} />
+              <div className="text-center">
+              <button onClick={() => deleteArticle(article.id)} className="btn btn-danger">Delete Article</button>
+              </div>
               <hr />
             </div>))}
           <nav className="flexbox mt-50 mb-50">
@@ -39,6 +41,12 @@ Articles.propTypes = {
   handlePagination: PropTypes.func.isRequired,
   nextUrl: PropTypes.string.isRequired,
   prevUrl: PropTypes.string.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
+};
+Articles.defaultProps = {
+  articles: [],
+  nextUrl: null,
+  prevUrl: null,
 };
 
 export default Articles;
